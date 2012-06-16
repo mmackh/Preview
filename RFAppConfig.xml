@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<app id="972-FDE1" appkey="7bb7cb48-bcd5-478f-9344-5719476abe81">
+  <property name="enable-location-services">YES</property>
+  <property name="enable-debug-console">NO</property>
+  <property name="allow-landscape-orientation">NO</property>
+  <property name="enable-layout-debugging">NO</property>
+  <property name="enable-shake-to-home">YES</property>
+  <property name="home-view-location">//RFAppConfig.xml</property>
+  <views>
+    <view>
+      <actions>
+        <navigate on="will-appear" if="'[session:email]'==''">
+          <property name="navigation-transition">flip-left</property>
+          <property name="navigation-stack-type">push</property>
+          <property name="to">login.xml</property>
+        </navigate>
+      </actions>
+      <datasources>
+        <RFJSONDataProvider id="favorites">
+          <property name="hide-activity-indicator">YES</property>
+          <property name="data"><![CDATA[[session:favorites_list]]]></property>
+        </RFJSONDataProvider>
+      </datasources>
+      <property name="padding">0</property>
+      <property name="top-padding">0</property>
+      <property name="title-bar-visible">false</property>
+      <widgets>
+        <Image>
+          <property name="layout-type">absolute</property>
+          <property name="image">bg/two.jpg</property>
+          <property name="height">100%</property>
+          <property name="max-width">100%</property>
+        </Image>
+        <!-- TitleBar -->
+        <Layout>
+          <property name="width">95%</property>
+          <property name="horizontal-alignment">center</property>
+          <property name="layout-type">float</property>
+          <property name="height">40</property>
+          <widgets>
+            <Image id="signout">
+              <actions>
+                <modify on="touch">
+                  <property name="widget-id">repeater</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0.3</property>
+                  <values>
+                    <property name="top-position">45</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">input</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0</property>
+                  <values>
+                    <property name="top-position">100%</property>
+                  </values>
+                </modify>
+                <set on="touch">
+                  <property name="save-locally">YES</property>
+                  <values>
+                    <property name="email">[session:empty]</property>
+                    <property name="password">[session:empty]</property>
+                  </values>
+                </set>
+                <navigate on="touch">
+                  <property name="navigation-transition">flip-left</property>
+                  <property name="navigation-stack-type">push</property>
+                  <property name="to">login.xml</property>
+                </navigate>
+              </actions>
+              <property name="animate-touch">NO</property>
+              <property name="vertical-alignment">middle</property>
+              <property name="horizontal-alignment">left</property>
+              <property name="max-height">30</property>
+              <property name="image">button/signout.png</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+            <Image id="cancel">
+              <actions>
+                <modify on="touch">
+                  <property name="widget-id">signout</property>
+                  <values>
+                    <property name="visible">YES</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">cancel</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">add</property>
+                  <values>
+                    <property name="visible">YES</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">save</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">repeater</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0.3</property>
+                  <values>
+                    <property name="top-position">50</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">input</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0</property>
+                  <values>
+                    <property name="top-position">100%</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">name</property>
+                  <values>
+                    <property name="text">[session:empty]</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">code</property>
+                  <values>
+                    <property name="text">[session:empty]</property>
+                  </values>
+                </modify>
+                <function on="touch">
+                  <property name="widget-id">name</property>
+                  <property name="function-name">hide-keyboard</property>
+                </function>
+                <function on="touch">
+                  <property name="widget-id">code</property>
+                  <property name="function-name">hide-keyboard</property>
+                </function>
+              </actions>
+              <property name="visible">NO</property>
+              <property name="animate-touch">NO</property>
+              <property name="vertical-alignment">middle</property>
+              <property name="horizontal-alignment">left</property>
+              <property name="max-height">30</property>
+              <property name="image">button/cancel.png</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+            <Image id="add">
+              <actions>
+                <modify on="touch">
+                  <property name="widget-id">hint</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">signout</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">cancel</property>
+                  <values>
+                    <property name="visible">YES</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">add</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">save</property>
+                  <values>
+                    <property name="visible">YES</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">repeater</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0</property>
+                  <values>
+                    <property name="top-position">100%</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">input</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0.3</property>
+                  <values>
+                    <property name="top-position">120</property>
+                  </values>
+                </modify>
+              </actions>
+              <property name="animate-touch">NO</property>
+              <property name="vertical-alignment">middle</property>
+              <property name="horizontal-alignment">right</property>
+              <property name="max-height">30</property>
+              <property name="image">button/add.png</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+            <Image id="save">
+              <actions>
+                <set on="touch" if="'[form:code]'!=''">
+                  <property name="save-locally">YES</property>
+                  <values>
+                    <property name="hintshown">YES</property>
+                    <property name="favorites_list"><![CDATA[[eval:("
+if('[session:favorites_list]'=='') {
+    Favorites = new Object;
+    Favorites.items = new Array();
+} else {
+    Favorites = JSON.parse('[session:favorites_list]');
+}
+function Favorite(name,code) {
+  this.name = name;
+  this.code = code;
+}
+Favorites.items[Favorites.items.length] = new Favorite('[form:name]','[form:code]');
+JSON.stringify(Favorites);")]]]></property>
+                  </values>
+                </set>
+                <refresh on="touch">
+                  <property name="id">favorites</property>
+                </refresh>
+                <modify on="touch">
+                  <property name="widget-id">signout</property>
+                  <values>
+                    <property name="visible">YES</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">cancel</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">add</property>
+                  <values>
+                    <property name="visible">YES</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">save</property>
+                  <values>
+                    <property name="visible">NO</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">repeater</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0.3</property>
+                  <values>
+                    <property name="top-position">50</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">input</property>
+                  <property name="duration">0.3</property>
+                  <property name="delay">0</property>
+                  <values>
+                    <property name="top-position">100%</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">name</property>
+                  <values>
+                    <property name="text">[session:empty]</property>
+                  </values>
+                </modify>
+                <modify on="touch">
+                  <property name="widget-id">code</property>
+                  <values>
+                    <property name="text">[session:empty]</property>
+                  </values>
+                </modify>
+                <function on="touch">
+                  <property name="widget-id">name</property>
+                  <property name="function-name">hide-keyboard</property>
+                </function>
+                <function on="touch">
+                  <property name="widget-id">code</property>
+                  <property name="function-name">hide-keyboard</property>
+                </function>
+              </actions>
+              <property name="visible">NO</property>
+              <property name="animate-touch">NO</property>
+              <property name="vertical-alignment">middle</property>
+              <property name="horizontal-alignment">right</property>
+              <property name="max-height">30</property>
+              <property name="image">button/save.png</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+          </widgets>
+        </Layout>
+        <Image id="hint">
+          <property name="enabled">NO</property>
+          <property name="visible" if="'[session:hintshown]'=='YES'">NO</property>
+          <property name="right-margin">25</property>
+          <property name="horizontal-alignment">right</property>
+          <property name="top-position">55</property>
+          <property name="layout-type">float</property>
+          <property name="image">ui/hint.png</property>
+          <property name="max-height">106</property>
+        </Image>
+        <Layout id="repeater">
+          <property name="height">[eval:("[app:screen-height] - 51")]</property>
+          <property name="top-position">47</property>
+          <property name="width">97%</property>
+          <property name="layout-type">float</property>
+          <property name="horizontal-alignment">center</property>
+          <widgets>
+            <Repeater>
+              <property name="row-data-id">favorites</property>
+              <property name="row-data-path">root/items/item</property>
+              <property name="item-width">100%</property>
+              <property name="item-height">50</property>
+              <property name="separator-color">#FFFFFFA9</property>
+              <property name="animate-new-rows">NO</property>
+              <property name="fade-rows">NO</property>
+              <property name="height">100%</property>
+              <property name="width">100%</property>
+              <widgets>
+                <Layout>
+                  <property name="layout-flow">horizontal</property>
+                  <property name="height">100%</property>
+                  <property name="width">100%</property>
+                  <widgets>
+                    <Layout>
+                      <actions>
+                        <set on="touch">
+                          <property name="save-locally">YES</property>
+                          <values>
+                            <property name="favorites_list"><![CDATA[[eval:("
+Favorites = JSON.parse('[session:favorites_list]');
+for (i=0;i<Favorites.items.length;i++)
+    {
+          if(Favorites.items[i].name=='[data:row('name')]')
+          {
+            Favorites.items.splice(i, 1);
+  
+          }
+    }
+JSON.stringify(Favorites)
+")]]]></property>
+                          </values>
+                        </set>
+                        <refresh on="touch">
+                          <property name="id">favorite_image</property>
+                        </refresh>
+                        <refresh on="touch">
+                          <property name="id">favorites</property>
+                        </refresh>
+                      </actions>
+                      <property name="height">100%</property>
+                      <property name="width">50</property>
+                      <widgets>
+                        <Text>
+                          <property name="font">Futura:20</property>
+                          <property name="layout-type">float</property>
+                          <property name="vertical-alignment">middle</property>
+                          <property name="horizontal-alignment">center</property>
+                          <property name="text">☆</property>
+                        </Text>
+                      </widgets>
+                    </Layout>
+                    <Layout>
+                      <property name="vertical-alignment">middle</property>
+                      <property name="height">90%</property>
+                      <widgets>
+                        <Text>
+                          <property name="font">HelveticaNeue-Bold:18</property>
+                          <property name="left-margin">5</property>
+                          <property name="text">[data:row('name')]</property>
+                        </Text>
+                        <Text>
+                          <property name="top-margin">-10</property>
+                          <property name="font">HelveticaNeue-Italic:15</property>
+                          <property name="left-margin">5</property>
+                          <property name="text">[data:row('code')]</property>
+                        </Text>
+                      </widgets>
+                    </Layout>
+                    <Text>
+                      <property name="font">Futura:20</property>
+                      <property name="layout-type">float</property>
+                      <property name="vertical-alignment">middle</property>
+                      <property name="horizontal-alignment">right</property>
+                      <property name="right-margin">10</property>
+                      <property name="text">›</property>
+                    </Text>
+                    <Layout>
+                      <actions>
+                        <navigate on="touch">
+                          <property name="navigation-type">app</property>
+                          <property name="auth-username">[session:email]</property>
+                          <property name="auth-password">[session:password]</property>
+                          <property name="to">[data:row("code")]</property>
+                        </navigate>
+                      </actions>
+                      <property name="animate-touch">NO</property>
+                      <property name="fill-remaining-width">YES</property>
+                      <property name="height">100%</property>
+                      <property name="left-position">50</property>
+                      <property name="layout-type">float</property>
+                    </Layout>
+                  </widgets>
+                </Layout>
+              </widgets>
+            </Repeater>
+          </widgets>
+        </Layout>
+        <Layout id="input">
+          <property name="layout-type">float</property>
+          <property name="height">90</property>
+          <property name="top-position">100%</property>
+          <property name="width">80%</property>
+          <property name="horizontal-alignment">center</property>
+          <widgets>
+            <Image>
+              <property name="image">ui/input.png</property>
+              <property name="height">100%</property>
+              <property name="max-width">100%</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+            <TextInput id="name">
+              <property name="auto-grow-size">NO</property>
+              <property name="auto-correct">NO</property>
+              <property name="placeholder-text">Codename</property>
+              <property name="width">90%</property>
+              <property name="vertical-alignment">top</property>
+              <property name="height">40</property>
+              <property name="style">clear</property>
+            </TextInput>
+            <TextInput id="code">
+              <property name="auto-grow-size">NO</property>
+              <property name="auto-correct">NO</property>
+              <property name="placeholder-text">App Code</property>
+              <property name="width">90%</property>
+              <property name="vertical-alignment">bottom</property>
+              <property name="height">40</property>
+              <property name="style">clear</property>
+            </TextInput>
+          </widgets>
+        </Layout>
+        <Button>
+          <actions>
+            <navigate on="touch">
+              <property name="navigation-transition">flip-left</property>
+              <property name="navigation-stack-type">replace</property>
+              <property name="to">RFAppConfig.xml</property>
+            </navigate>
+          </actions>
+          <property name="visible">NO</property>
+          <property name="vertical-alignment">bottom</property>
+          <property name="text">R</property>
+          <property name="height">40</property>
+          <property name="width">40</property>
+          <property name="layout-type">float</property>
+        </Button>
+      </widgets>
+      <datasources />
+    </view>
+  </views>
+</app>

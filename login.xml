@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<app>
+  <views>
+    <view>
+      <property name="padding">0</property>
+      <property name="top-padding">0</property>
+      <property name="title-bar-visible">false</property>
+      <widgets>
+        <Image>
+          <property name="layout-type">absolute</property>
+          <property name="image">bg/one.jpg</property>
+          <property name="height">100%</property>
+          <property name="max-width">100%</property>
+        </Image>
+        <!-- TitleBar -->
+        <Layout>
+          <property name="width">95%</property>
+          <property name="horizontal-alignment">center</property>
+          <property name="layout-type">float</property>
+          <property name="height">40</property>
+          <widgets>
+            <Image>
+              <actions>
+                <alert on="touch">
+                  <property name="title">About</property>
+                  <property name="message">Want to contribute? Fork me on Github.com!</property>
+                  <property name="button-text">Got It</property>
+                </alert>
+              </actions>
+              <property name="animate-touch">NO</property>
+              <property name="vertical-alignment">middle</property>
+              <property name="horizontal-alignment">left</property>
+              <property name="max-height">30</property>
+              <property name="image">button/about.png</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+            <Image>
+              <actions>
+                <alert on="touch" if="'[form:email]'==''">
+                  <property name="message">Fill out all fields</property>
+                </alert>
+                <set on="touch" if="'[form:email]'!=''">
+                  <property name="save-locally">YES</property>
+                  <values>
+                    <property name="email">[form:email]</property>
+                    <property name="password">[form:password]</property>
+                  </values>
+                </set>
+                <navigate on="touch" if="'[form:email]'!=''">
+                  <property name="navigation-transition">flip-right</property>
+                  <property name="navigation-stack-type">pop</property>
+                </navigate>
+              </actions>
+              <property name="animate-touch">NO</property>
+              <property name="vertical-alignment">middle</property>
+              <property name="horizontal-alignment">right</property>
+              <property name="max-height">30</property>
+              <property name="image">button/login.png</property>
+              <property name="layout-type">absolute</property>
+            </Image>
+          </widgets>
+        </Layout>
+        <Layout>
+          <property name="layout-type">float</property>
+          <property name="height">90</property>
+          <property name="top-position">120</property>
+          <property name="width">80%</property>
+          <property name="horizontal-alignment">center</property>
+          <widgets>
+            <TextInput id="email">
+              <property name="auto-grow-size">NO</property>
+              <property name="auto-correct">NO</property>
+              <property name="placeholder-text">Email</property>
+              <property name="width">90%</property>
+              <property name="vertical-alignment">top</property>
+              <property name="height">40</property>
+              <property name="style">clear</property>
+            </TextInput>
+            <TextInput id="password">
+              <property name="protected">YES</property>
+              <property name="auto-grow-size">NO</property>
+              <property name="auto-correct">NO</property>
+              <property name="placeholder-text">Password</property>
+              <property name="width">90%</property>
+              <property name="vertical-alignment">bottom</property>
+              <property name="height">40</property>
+              <property name="style">clear</property>
+            </TextInput>
+          </widgets>
+        </Layout>
+      </widgets>
+      <datasources />
+    </view>
+  </views>
+</app>
